@@ -1,0 +1,6 @@
+{
+    "name": "customer-service-agent-mcp",
+    "version": "1.0.0",
+    "description": "MCP servers for customer service agent",
+    "mcpServers": []
+}

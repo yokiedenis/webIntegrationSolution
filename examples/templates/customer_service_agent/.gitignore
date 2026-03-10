@@ -1,0 +1,30 @@
+# Ignore environment files and local runtime artifacts for this template
+.env
+.env.*
+.env.local
+.env.*.local
+
+# Python virtual env
+.venv/
+venv/
+env/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Keep the example file but don't commit secrets
+!.env.example

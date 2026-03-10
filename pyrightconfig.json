@@ -1,0 +1,15 @@
+{
+    "include": [
+        "core",
+        "examples",
+        "webIntegrationTests"
+    ],
+    "typeCheckingMode": "basic",
+    "pythonVersion": "3.11",
+    "pythonPath": ".venv/Scripts/python.exe",
+    "extraPaths": [
+        "core",
+        "examples",
+        "webIntegrationTests/reactNode"
+    ]
+}

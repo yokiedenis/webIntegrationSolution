@@ -1,0 +1,65 @@
+{
+    "name": "customer_service_agent",
+    "version": "1.0.0",
+    "description": "Intelligent customer service agent for handling support inquiries",
+    "type": "agent",
+    "author": "Hive Team",
+    "nodes": [
+        {
+            "id": "intake",
+            "name": "Receive Customer Inquiry",
+            "description": "Receive and validate customer inquiry",
+            "type": "event_loop"
+        },
+        {
+            "id": "classify",
+            "name": "Classify Issue Type",
+            "description": "Classify inquiry into FAQ, task, or escalation",
+            "type": "event_loop"
+        },
+        {
+            "id": "handle",
+            "name": "Handle Customer Request",
+            "description": "Process request based on classification",
+            "type": "event_loop"
+        },
+        {
+            "id": "satisfaction",
+            "name": "Track Satisfaction",
+            "description": "Track satisfaction and close ticket",
+            "type": "event_loop"
+        }
+    ],
+    "edges": [
+        {
+            "from": "intake",
+            "to": "classify",
+            "condition": "on_success"
+        },
+        {
+            "from": "classify",
+            "to": "handle",
+            "condition": "on_success"
+        },
+        {
+            "from": "handle",
+            "to": "satisfaction",
+            "condition": "on_success"
+        }
+    ],
+    "features": [
+        "Smart inquiry classification",
+        "FAQ resolution",
+        "4 task handlers (password reset, refund, order tracking, technical)",
+        "Escalation management",
+        "Satisfaction tracking",
+        "Production-ready error handling"
+    ],
+    "tags": [
+        "customer-service",
+        "support",
+        "automation",
+        "multi-node",
+        "production"
+    ]
+}
