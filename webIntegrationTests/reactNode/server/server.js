@@ -17,10 +17,12 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const AGENT_PORT = process.env.AGENT_PORT || 5001;
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
 
 // Initialize agent subprocess manager
 const agentManager = new AgentSubprocessManager({
-  agentPort: process.env.AGENT_PORT || 5001,
+  agentPort: AGENT_PORT,
   pythonPath: process.env.PYTHON_PATH || "python",
   agentScript: process.env.AGENT_SCRIPT,
   enabled: process.env.AGENT_SUBPROCESS_ENABLED !== "false", // Enabled by default
@@ -231,9 +233,8 @@ const server = app.listen(PORT, async () => {
   console.log(`\n🚀 Customer Service Dashboard Backend`);
   console.log(`   Running on http://localhost:${PORT}`);
   console.log(`   Environment: ${process.env.NODE_ENV || "development"}`);
-  console.log(
-    `   Python Agent: http://localhost:${process.env.AGENT_PORT || 5001}\n`,
-  );
+  console.log(`   Python Agent: http://localhost:${AGENT_PORT}`);
+  console.log(`   Frontend URL: ${FRONTEND_URL}\n`);
 
   // Start agent subprocess
   const agentStarted = await agentManager.start();
@@ -272,7 +273,7 @@ process.on("uncaughtException", (error) => {
 // Helper Functions
 
 async function callPythonAgent(message, customerId, sessionId) {
-  const pythonAgentUrl = `http://localhost:${process.env.AGENT_PORT || 5001}`;
+  const pythonAgentUrl = `http://localhost:${AGENT_PORT}`;
 
   try {
     const response = await fetch(`${pythonAgentUrl}/process`, {
