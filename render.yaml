@@ -1,0 +1,36 @@
+services:
+  # Backend service - Express + Python Agent
+  - type: web
+    name: customer-service-backend
+    runtime: node
+    plan: free
+    buildCommand: cd webIntegrationTests/reactNode/server && npm install
+    startCommand: cd webIntegrationTests/reactNode/server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: AGENT_PORT
+        value: 5001
+      - key: AGENT_SUBPROCESS_ENABLED
+        value: true
+      - key: PYTHON_PATH
+        value: python3
+      # Set these in Render dashboard with your actual values:
+      # - key: FRONTEND_URL
+      #   value: https://your-frontend.onrender.com
+      # - key: GROQ_API_KEY
+      #   value: your_groq_key
+
+  # Frontend service - React/Vite
+  - type: web
+    name: customer-service-frontend
+    runtime: node
+    plan: free
+    buildCommand: cd webIntegrationTests/reactNode/client && npm install && npm run build
+    startCommand: cd webIntegrationTests/reactNode/client && npm run preview
+    envVars:
+      - key: VITE_API_URL
+        value: https://customer-service-backend.onrender.com
+        # Update this with your actual backend URL after first deploy

@@ -12,7 +12,8 @@
     "test:duplicates": "bun test scripts/auto-close-duplicates",
     "frontend:dev": "cd core/frontend && npm run dev",
     "frontend:build": "cd core/frontend && npm run build",
-    "frontend:preview": "cd core/frontend && npm run preview"
+    "frontend:preview": "cd core/frontend && npm run preview",
+        "build": "echo 'Build handled"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
@@ -24,3 +25,4 @@
   },
   "packageManager": "npm@10.2.0"
 }
+
