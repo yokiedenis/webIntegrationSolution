@@ -23,14 +23,13 @@ services:
       # - key: GROQ_API_KEY
       #   value: your_groq_key
 
-  # Frontend service - React/Vite
-  - type: web
+  # Frontend service - React/Vite (Static SPA)
+  - type: static site
     name: customer-service-frontend
-    runtime: node
-    plan: free
     buildCommand: cd webIntegrationTests/reactNode/client && npm install && npm run build
-    startCommand: cd webIntegrationTests/reactNode/client && npm run preview
-    envVars:
-      - key: VITE_API_URL
-        value: https://customer-service-backend.onrender.com
-        # Update this with your actual backend URL after first deploy
+    staticPublishPath: webIntegrationTests/reactNode/client/dist
+    routes:
+      - path: /api/*
+        destination: https://customer-service-backend.onrender.com/api/:splat
+      - path: /*
+        destination: /index.html
