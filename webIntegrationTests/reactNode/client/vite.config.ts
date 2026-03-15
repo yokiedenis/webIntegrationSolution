@@ -14,6 +14,11 @@ export default defineConfig({
   },
   preview: {
     port: 5173,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    allowedHosts: [
+      'customer-service-frontend-jswl.onrender.com',
+      '*.onrender.com',
+      'localhost'
+    ]
   }
 })
