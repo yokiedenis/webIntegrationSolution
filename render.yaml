@@ -1,5 +1,5 @@
 services:
-  # Backend service - Express + Python Agent
+  # Backend service - Express.js + Python Agent subprocess
   - type: web
     name: customer-service-backend
     runtime: node
@@ -9,6 +9,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 5000
       - key: AGENT_PORT
         value: 5001
       - key: AGENT_SUBPROCESS_ENABLED
@@ -18,11 +20,13 @@ services:
       - key: FRONTEND_URL
         value: https://customer-service-frontend.onrender.com
 
-  # Frontend service - React/Vite Static Site
-  - type: static site
+  # Frontend service - React/Vite SPA served as web service
+  - type: web
     name: customer-service-frontend
-    buildCommand: cd webIntegrationTests/reactNode/client && npm install && npm run build
-    staticPublishPath: webIntegrationTests/reactNode/client/dist
+    runtime: node
+    plan: free
+    buildCommand: cd webIntegrationTests/reactNode/client && npm install && VITE_API_URL=https://customer-service-backend.onrender.com npm run build
+    startCommand: cd webIntegrationTests/reactNode/client && npm run preview
     envVars:
       - key: VITE_API_URL
         value: https://customer-service-backend.onrender.com
