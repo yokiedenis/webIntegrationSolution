@@ -65,6 +65,16 @@ core/data/
 tmp/
 temp/
 
+# Temporary documentation and setup guides
+RENDER_YAML_GUIDE.md
+RENDER_DEPLOYMENT_SETUP.md
+DEPLOYMENT_READY.md
+PORT_FIX_SUMMARY.md
+commit_message.txt
+
+# Lock files (except package-lock.json for reproducible installs)
+uv.lock
+
 exports/*
 
 .claude/settings.local.json
