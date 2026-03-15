@@ -9,27 +9,20 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 5000
       - key: AGENT_PORT
         value: 5001
       - key: AGENT_SUBPROCESS_ENABLED
         value: true
       - key: PYTHON_PATH
         value: python3
-      # Set these in Render dashboard with your actual values:
-      # - key: FRONTEND_URL
-      #   value: https://your-frontend.onrender.com
-      # - key: GROQ_API_KEY
-      #   value: your_groq_key
+      - key: FRONTEND_URL
+        value: https://customer-service-frontend.onrender.com
 
-  # Frontend service - React/Vite (Static SPA)
+  # Frontend service - React/Vite Static Site
   - type: static site
     name: customer-service-frontend
     buildCommand: cd webIntegrationTests/reactNode/client && npm install && npm run build
     staticPublishPath: webIntegrationTests/reactNode/client/dist
-    routes:
-      - path: /api/*
-        destination: https://customer-service-backend.onrender.com/api/:splat
-      - path: /*
-        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://customer-service-backend.onrender.com
