@@ -15,10 +15,11 @@ export default defineConfig({
   preview: {
     port: 5173,
     host: '0.0.0.0',
+    // Allow all hosts for Render deployment (dynamic domains)
     allowedHosts: [
-      'customer-service-frontend-jswl.onrender.com',
-      '*.onrender.com',
-      'localhost'
+      'localhost',
+      '127.0.0.1',
+      '.onrender.com'  // Allow all Render subdomains
     ]
   }
 })
